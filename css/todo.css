@@ -1,0 +1,262 @@
+/* ═══════════ TODO SECTION ═══════════ */
+.todo-section {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Input ── */
+.input-box {
+    display: flex;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(109,76,47,0.05);
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.input-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(109,76,47,0.05), 0 0 0 3px var(--accent-glow);
+}
+
+.input-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+.input-box input::placeholder { color: var(--text-muted); font-weight: 400; }
+
+.input-box button {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(232,131,90,0.25);
+    flex-shrink: 0;
+}
+
+.input-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(232,131,90,0.35);
+}
+
+.input-box button:active { transform: scale(0.93); }
+
+/* ── Task Count ── */
+.task-count {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+    padding-left: 4px;
+}
+
+/* ── Task List ── */
+.task-list { list-style: none; }
+
+.task-item {
+    background: var(--surface);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+    animation: taskSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Swipe backdrop */
+.swipe-actions {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 0;
+}
+
+.swipe-complete-bg {
+    flex: 1;
+    background: var(--success);
+    display: flex;
+    align-items: center;
+    padding-left: 18px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.swipe-delete-bg {
+    flex: 1;
+    background: var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 18px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Task content (slides over backdrop on swipe) */
+.task-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--surface);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s;
+    touch-action: pan-y;
+    cursor: default;
+}
+
+.task-content.swiping {
+    transition: none;
+}
+
+.task-item:hover .task-content {
+    transform: translateX(3px);
+}
+
+@keyframes taskSlideIn {
+    from { opacity: 0; transform: translateY(15px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.task-item.completing {
+    animation: taskComplete 0.5s ease forwards;
+}
+
+@keyframes taskComplete {
+    0%   { transform: scale(1); opacity: 1; }
+    30%  { transform: scale(1.02); }
+    100% { transform: scale(0.85) translateX(40px); opacity: 0; max-height: 0; padding: 0; margin: 0; border-width: 0; }
+}
+
+/* ── Task Left ── */
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.complete-btn {
+    width: 24px; height: 24px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.25s;
+    position: relative;
+    background: transparent;
+}
+
+.complete-btn:hover {
+    border-color: var(--success);
+    background: rgba(92,184,92,0.06);
+    box-shadow: 0 0 8px rgba(92,184,92,0.2);
+}
+
+.complete-btn:hover::after {
+    content: '\2713';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--success);
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+/* ── Task Text ── */
+.task-text {
+    font-size: 0.92rem;
+    word-break: break-word;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+}
+
+.task-text-editing {
+    font-size: 0.92rem;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    outline: none;
+    width: 100%;
+    padding: 0;
+    font-family: inherit;
+    border-bottom: 1.5px solid var(--accent);
+}
+
+/* ── Task Meta ── */
+.task-time {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+/* ── Delete Button ── */
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.task-item:hover .delete-btn { opacity: 0.5; }
+.delete-btn:hover { opacity: 1 !important; color: var(--danger); background: rgba(224,85,85,0.08); }
+
+/* On touch devices, always show delete */
+@media (hover: none) {
+    .delete-btn { opacity: 0.4; }
+    .task-item:hover .task-content { transform: none; }
+}
+
+/* ── Empty State ── */
+.empty-msg {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-top: 28px;
+    font-weight: 400;
+}
+
+/* ═══════════ STAGGERED LOAD ═══════════ */
+.task-item:nth-child(1) { animation-delay: 0s; }
+.task-item:nth-child(2) { animation-delay: 0.04s; }
+.task-item:nth-child(3) { animation-delay: 0.08s; }
+.task-item:nth-child(4) { animation-delay: 0.12s; }
+.task-item:nth-child(5) { animation-delay: 0.16s; }
+.task-item:nth-child(n+6) { animation-delay: 0.2s; }

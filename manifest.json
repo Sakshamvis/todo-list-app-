@@ -1,0 +1,19 @@
+{
+    "name": "Desk Ecosystem Builder",
+    "short_name": "DeskBuilder",
+    "description": "Build your dream desk setup by completing tasks",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#f5efe8",
+    "theme_color": "#f5efe8",
+    "orientation": "portrait",
+    "categories": ["productivity", "utilities"],
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23f5efe8'/%3E%3Crect x='80' y='240' width='352' height='16' rx='4' fill='%23a67c52'/%3E%3Crect x='80' y='256' width='352' height='60' rx='4' fill='%236d4c2f'/%3E%3Crect x='200' y='180' width='112' height='70' rx='4' fill='%23333'/%3E%3Crect x='204' y='184' width='104' height='56' rx='2' fill='%231a2030'/%3E%3Crect x='230' y='250' width='12' height='16' fill='%23666'/%3E%3Crect x='220' y='266' width='32' height='4' rx='1' fill='%23666'/%3E%3Crect x='160' y='244' width='60' height='12' rx='2' fill='%23e0ddd8'/%3E%3Crect x='310' y='246' width='14' height='8' rx='4' fill='%23ddd'/%3E%3Ccircle cx='132' cy='248' r='8' fill='%23f8f4f0'/%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
