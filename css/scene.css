@@ -310,121 +310,89 @@
 
 .mug-steam { display: none; }
 
-/* ═══════════ REALISTIC PLANT (top-down monstera / tropical) ═══════════ */
+/* ═══════════ POTTED PLANT (back-left corner, compact) ═══════════ */
 .plant-item {
-    bottom: 8%; right: 8%;
-    width: 48px; height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 22;
+    top: 6%;
+    left: 4%;
+    width: 36px;
+    height: 36px;
+    z-index: 19;
+    position: absolute;
+}
+
+.plant-pot {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 36%, #d4956a, #b06830 55%, #8a5028);
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.2),
+        inset 0 -2px 3px rgba(0,0,0,0.18);
+    z-index: 1;
+}
+
+.plant-pot::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 40%, #5a3e28, #3a2515 75%);
 }
 
 .plant-leaves {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 22px;
     z-index: 2;
-    animation: plantSway 6s ease-in-out infinite;
-}
-
-@keyframes plantSway {
-    0%, 100% { transform: rotate(0deg); }
-    50%      { transform: rotate(2.5deg); }
 }
 
 .leaf {
     position: absolute;
-    top: 50%; left: 50%;
-    width: 11px; height: 18px;
+    width: 10px;
+    height: 14px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
     transform-origin: center bottom;
-    border-radius: 48% 52% 44% 56% / 62% 58% 42% 38%;
+    border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%;
+    background: linear-gradient(180deg, #5cb85c 0%, #3a8a3a 55%, #2a6a2a 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
-.leaf.l1 {
-    transform: translate(-50%, -95%) rotate(-8deg);
-    background: linear-gradient(170deg, #6fc26f 10%, #3d8c3d 60%, #2d6e2d 100%);
-    box-shadow: inset 1px 0 0 rgba(255,255,255,0.08);
-}
-
-.leaf.l2 {
-    transform: translate(-55%, -90%) rotate(52deg);
-    background: linear-gradient(175deg, #78cc78 5%, #4a9e4a 55%, #357535 100%);
-    box-shadow: inset 1px 0 0 rgba(255,255,255,0.06);
-}
-
-.leaf.l3 {
-    transform: translate(-48%, -92%) rotate(115deg);
-    background: linear-gradient(168deg, #5db85d 12%, #3a8a3a 58%, #2a6a2a 100%);
-    box-shadow: inset 1px 0 0 rgba(255,255,255,0.1);
-}
-
-.leaf.l4 {
-    transform: translate(-50%, -88%) rotate(178deg);
-    background: linear-gradient(172deg, #72c472 8%, #48964e 50%, #326e38 100%);
-}
-
-.leaf.l5 {
-    transform: translate(-46%, -94%) rotate(242deg);
-    background: linear-gradient(165deg, #68be68 10%, #3e903e 55%, #2c6c2c 100%);
-    box-shadow: inset 1px 0 0 rgba(255,255,255,0.07);
-}
-
-.leaf.l6 {
-    transform: translate(-52%, -92%) rotate(308deg);
-    background: linear-gradient(178deg, #7dd07d 6%, #4ca44c 48%, #387838 100%);
-}
-
-/* Leaf vein midribs via pseudo-elements */
 .leaf::after {
     content: '';
     position: absolute;
-    top: 20%; left: 50%;
+    top: 22%;
+    left: 50%;
     transform: translateX(-50%);
-    width: 1px; height: 55%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
-    border-radius: 1px;
+    width: 0.6px;
+    height: 45%;
+    background: rgba(255,255,255,0.12);
 }
 
-.plant-pot {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 35% 35%, #d69060 0%, #b97040 50%, #8e5428 100%);
-    box-shadow:
-        0 2px 6px rgba(0,0,0,0.2),
-        inset 0 -2px 4px rgba(0,0,0,0.15),
-        inset 0 2px 3px rgba(255,255,255,0.08);
-    z-index: 0;
-    position: relative;
-}
+.leaf.l1 { transform: rotate(-42deg); }
+.leaf.l2 { transform: rotate(-12deg); background: linear-gradient(180deg, #62be62, #3d903d 55%, #2d702d); }
+.leaf.l3 { transform: rotate(18deg); }
+.leaf.l4 { transform: rotate(48deg); background: linear-gradient(180deg, #58b458, #388838 55%, #286628); }
+.leaf.l5 { transform: rotate(-72deg); height: 12px; }
+.leaf.l6 { transform: rotate(72deg); height: 12px; }
 
-/* Soil visible inside the pot */
-.plant-pot::after {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 40% 38%, #5c4030 0%, #3e2a1a 70%);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-}
+.plant-center { display: none; }
 
-.plant-center {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #90dd90 20%, #4a9a4a 80%);
-    z-index: 3;
-    box-shadow: 0 0 3px rgba(100,200,100,0.3);
-}
-
-/* Tier-2: lush, bigger, more depth */
-.plant-item.tier-2 { width: 58px; height: 58px; }
-.plant-item.tier-2 .leaf { width: 14px; height: 23px; filter: saturate(1.15) brightness(1.05); }
-.plant-item.tier-2 .plant-pot { width: 38px; height: 38px; }
-.plant-item.tier-2 .plant-center { width: 7px; height: 7px; }
+/* Tier-2: slightly larger, fuller */
+.plant-item.tier-2 { width: 44px; height: 44px; }
+.plant-item.tier-2 .plant-pot { width: 24px; height: 24px; }
+.plant-item.tier-2 .plant-leaves { width: 38px; height: 26px; }
+.plant-item.tier-2 .leaf { width: 12px; height: 17px; margin-left: -6px; }
+.plant-item.tier-2 .leaf.l5,
+.plant-item.tier-2 .leaf.l6 { height: 14px; }
 
 /* ═══════════ TABLET — chart UI ═══════════ */
 .tablet-item {
